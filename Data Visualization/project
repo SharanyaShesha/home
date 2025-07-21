@@ -1,0 +1,345 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/SharanyaShesha/home/blob/main/Data%20Visualization/project\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        " VIDEO LINK: https://indiana-my.sharepoint.com/:v:/g/personal/sshesha_iu_edu/EbePXRScAzhEkKS-l3KYjFcBXMgsRvIDuvanoVRGPsjZKA?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=t0MeGH"
+      ],
+      "metadata": {
+        "id": "jtBsX7OLR9Bn"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "esPu7o--PYyM",
+        "outputId": "e9c0504c-1cca-4e7b-fdda-7c0dd5c17ec3"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Collecting dash\n",
+            "  Downloading dash-2.18.2-py3-none-any.whl.metadata (10 kB)\n",
+            "Requirement already satisfied: Flask<3.1,>=1.0.4 in /usr/local/lib/python3.10/dist-packages (from dash) (3.0.3)\n",
+            "Collecting Werkzeug<3.1 (from dash)\n",
+            "  Downloading werkzeug-3.0.6-py3-none-any.whl.metadata (3.7 kB)\n",
+            "Requirement already satisfied: plotly>=5.0.0 in /usr/local/lib/python3.10/dist-packages (from dash) (5.24.1)\n",
+            "Collecting dash-html-components==2.0.0 (from dash)\n",
+            "  Downloading dash_html_components-2.0.0-py3-none-any.whl.metadata (3.8 kB)\n",
+            "Collecting dash-core-components==2.0.0 (from dash)\n",
+            "  Downloading dash_core_components-2.0.0-py3-none-any.whl.metadata (2.9 kB)\n",
+            "Collecting dash-table==5.0.0 (from dash)\n",
+            "  Downloading dash_table-5.0.0-py3-none-any.whl.metadata (2.4 kB)\n",
+            "Requirement already satisfied: importlib-metadata in /usr/local/lib/python3.10/dist-packages (from dash) (8.5.0)\n",
+            "Requirement already satisfied: typing-extensions>=4.1.1 in /usr/local/lib/python3.10/dist-packages (from dash) (4.12.2)\n",
+            "Requirement already satisfied: requests in /usr/local/lib/python3.10/dist-packages (from dash) (2.32.3)\n",
+            "Collecting retrying (from dash)\n",
+            "  Downloading retrying-1.3.4-py3-none-any.whl.metadata (6.9 kB)\n",
+            "Requirement already satisfied: nest-asyncio in /usr/local/lib/python3.10/dist-packages (from dash) (1.6.0)\n",
+            "Requirement already satisfied: setuptools in /usr/local/lib/python3.10/dist-packages (from dash) (75.1.0)\n",
+            "Requirement already satisfied: Jinja2>=3.1.2 in /usr/local/lib/python3.10/dist-packages (from Flask<3.1,>=1.0.4->dash) (3.1.4)\n",
+            "Requirement already satisfied: itsdangerous>=2.1.2 in /usr/local/lib/python3.10/dist-packages (from Flask<3.1,>=1.0.4->dash) (2.2.0)\n",
+            "Requirement already satisfied: click>=8.1.3 in /usr/local/lib/python3.10/dist-packages (from Flask<3.1,>=1.0.4->dash) (8.1.7)\n",
+            "Requirement already satisfied: blinker>=1.6.2 in /usr/local/lib/python3.10/dist-packages (from Flask<3.1,>=1.0.4->dash) (1.9.0)\n",
+            "Requirement already satisfied: tenacity>=6.2.0 in /usr/local/lib/python3.10/dist-packages (from plotly>=5.0.0->dash) (9.0.0)\n",
+            "Requirement already satisfied: packaging in /usr/local/lib/python3.10/dist-packages (from plotly>=5.0.0->dash) (24.2)\n",
+            "Requirement already satisfied: MarkupSafe>=2.1.1 in /usr/local/lib/python3.10/dist-packages (from Werkzeug<3.1->dash) (3.0.2)\n",
+            "Requirement already satisfied: zipp>=3.20 in /usr/local/lib/python3.10/dist-packages (from importlib-metadata->dash) (3.21.0)\n",
+            "Requirement already satisfied: charset-normalizer<4,>=2 in /usr/local/lib/python3.10/dist-packages (from requests->dash) (3.4.0)\n",
+            "Requirement already satisfied: idna<4,>=2.5 in /usr/local/lib/python3.10/dist-packages (from requests->dash) (3.10)\n",
+            "Requirement already satisfied: urllib3<3,>=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests->dash) (2.2.3)\n",
+            "Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests->dash) (2024.8.30)\n",
+            "Requirement already satisfied: six>=1.7.0 in /usr/local/lib/python3.10/dist-packages (from retrying->dash) (1.17.0)\n",
+            "Downloading dash-2.18.2-py3-none-any.whl (7.8 MB)\n",
+            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m7.8/7.8 MB\u001b[0m \u001b[31m48.7 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hDownloading dash_core_components-2.0.0-py3-none-any.whl (3.8 kB)\n",
+            "Downloading dash_html_components-2.0.0-py3-none-any.whl (4.1 kB)\n",
+            "Downloading dash_table-5.0.0-py3-none-any.whl (3.9 kB)\n",
+            "Downloading werkzeug-3.0.6-py3-none-any.whl (227 kB)\n",
+            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m228.0/228.0 kB\u001b[0m \u001b[31m11.7 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hDownloading retrying-1.3.4-py3-none-any.whl (11 kB)\n",
+            "Installing collected packages: dash-table, dash-html-components, dash-core-components, Werkzeug, retrying, dash\n",
+            "  Attempting uninstall: Werkzeug\n",
+            "    Found existing installation: Werkzeug 3.1.3\n",
+            "    Uninstalling Werkzeug-3.1.3:\n",
+            "      Successfully uninstalled Werkzeug-3.1.3\n",
+            "Successfully installed Werkzeug-3.0.6 dash-2.18.2 dash-core-components-2.0.0 dash-html-components-2.0.0 dash-table-5.0.0 retrying-1.3.4\n"
+          ]
+        }
+      ],
+      "source": [
+        "!pip install dash"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from dash import Dash, html, dcc, Input, Output\n",
+        "import plotly.express as px\n",
+        "import pandas as pd\n"
+      ],
+      "metadata": {
+        "id": "lifJlkHKPlcf"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Load dataset from Google Sheets\n",
+        "sheet_url = \"https://docs.google.com/spreadsheets/d/e/2PACX-1vT7s1BHsLEE_6Jc4XFp9HXqLgFazU91y576oVjeCYMnW-digZsYPnwF9hVO54Vz51KMZuQgFqjw7q8S/pub?output=csv\"\n",
+        "covid_data = pd.read_csv(sheet_url)"
+      ],
+      "metadata": {
+        "id": "an_M2rb1Pqlr"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# MY WEB APP\n",
+        "\n",
+        "def update_graphs(vaccine_filter, age_filter):\n",
+        "    # Filter dataset\n",
+        "    filtered_data = covid_data[\n",
+        "        (covid_data['Vaccine product'] == vaccine_filter) &\n",
+        "        (covid_data['Age group'] == age_filter)\n",
+        "    ]\n",
+        "\n",
+        "    if filtered_data.empty:\n",
+        "        # Handle empty data case here (optional: display message)\n",
+        "        return {}, {}, \"No data available for selected filters.\"  # Return empty figures and message\n",
+        "\n",
+        "\n",
+        "# Load dataset from Google Sheets (replace with your actual URL)\n",
+        "sheet_url = \"https://docs.google.com/spreadsheets/d/e/2PACX-1vT7s1BHsLEE_6Jc4XFp9HXqLgFazU91y576oVjeCYMnW-digZsYPnwF9hVO54Vz51KMZuQgFqjw7q8S/pub?output=csv\"\n",
+        "covid_data = pd.read_csv(sheet_url)\n",
+        "\n",
+        "# Initialize Dash App\n",
+        "app = Dash(__name__)\n",
+        "\n",
+        "# App Layout\n",
+        "app.layout = html.Div(style={\"fontFamily\": \"Arial, sans-serif\", \"padding\": \"10px\"}, children=[\n",
+        "    html.H1(\"COVID-19 Death Rates: Vaccination vs. Unvaccinated\", style={\"textAlign\": \"center\"}),\n",
+        "    html.Div(\n",
+        "    \"Note: Data for individual vaccines is only available for the all ages adjusted group. Please use the 'all_ages_adj' option when filtering for vaccine-specific data. For all vaccine type, individual age groups can be selected.\",\n",
+        "    style={\"color\": \"red\", \"marginBottom\": \"10px\", \"fontSize\": \"14px\"}\n",
+        "),\n",
+        "\n",
+        "    # Filters\n",
+        "    html.Div([\n",
+        "        html.Label(\"Filter by Vaccine Type:\", style={\"marginRight\": \"10px\"}),\n",
+        "        dcc.Dropdown(\n",
+        "            id=\"vaccine-filter\",\n",
+        "            options=[{\"label\": vaccine, \"value\": vaccine} for vaccine in covid_data['Vaccine product'].unique()],\n",
+        "            value=\"all_types\",\n",
+        "            style={\"width\": \"200px\", \"display\": \"inline-block\"}\n",
+        "        ),\n",
+        "        html.Label(\"Filter by Age Group:\", style={\"marginLeft\": \"20px\", \"marginRight\": \"10px\"}),\n",
+        "        dcc.Dropdown(\n",
+        "            id=\"age-filter\",\n",
+        "            options=[{\"label\": age, \"value\": age} for age in covid_data['Age group'].unique()],\n",
+        "            value=\"18-29\",\n",
+        "            style={\"width\": \"200px\", \"display\": \"inline-block\"}\n",
+        "        )\n",
+        "    ], style={\"marginBottom\": \"20px\"}),\n",
+        "\n",
+        "    # Scatter Plot with Trendline\n",
+        "    dcc.Graph(id=\"scatter-plot\"),\n",
+        "    html.Div(\n",
+        "    \"Critical Zone: This represents an area where the death rate among unvaccinated individuals exceeds a concerning threshold, indicating a high-risk group.\",\n",
+        "    style={\"marginTop\": \"10px\", \"fontSize\": \"14px\"}\n",
+        "),\n",
+        "\n",
+        "    # Heatmap\n",
+        "    dcc.Graph(id=\"heatmap\"),\n",
+        "\n",
+        "    # Bar Chart for Death Rate Comparison\n",
+        "    dcc.Graph(id=\"bar-chart\"),\n",
+        "\n",
+        "    # Annotations for Anomalies\n",
+        "    html.Div(id=\"annotations\", style={\"marginTop\": \"20px\", \"fontSize\": \"14px\"})\n",
+        "])\n",
+        "\n",
+        "\n",
+        "@app.callback(\n",
+        "    [Output(\"scatter-plot\", \"figure\"),\n",
+        "     Output(\"heatmap\", \"figure\"),\n",
+        "     Output(\"bar-chart\", \"figure\"),\n",
+        "     Output(\"annotations\", \"children\")],\n",
+        "    [Input(\"vaccine-filter\", \"value\"),\n",
+        "     Input(\"age-filter\", \"value\")]\n",
+        ")\n",
+        "def update_graphs(vaccine_filter, age_filter):\n",
+        "    # Filter dataset\n",
+        "    filtered_data = covid_data[\n",
+        "        (covid_data['Vaccine product'] == vaccine_filter) &\n",
+        "        (covid_data['Age group'] == age_filter)\n",
+        "    ]\n",
+        "\n",
+        "    if filtered_data.empty:\n",
+        "        # Check if missing data caused the empty dataframe\n",
+        "        if all(col in covid_data.columns for col in [\"Crude unvax IR\", \"Crude vax IR\"]):\n",
+        "            message = \"No data available for the selected vaccine type.\"\n",
+        "        else:\n",
+        "            message = \"Missing data in required columns. Check your dataset.\"\n",
+        "        scatter_fig = px.scatter(title=message)\n",
+        "        heatmap_fig = px.imshow([[None]], title=\"No Correlation Data Available\")\n",
+        "        bar_chart_fig = px.bar(title=\"No Data Available\")  # Placeholder for bar chart\n",
+        "        annotations = \"No anomalies detected.\"\n",
+        "        return scatter_fig, heatmap_fig, bar_chart_fig, annotations\n",
+        "\n",
+        "    # Scatter Plot with Trendline\n",
+        "    scatter_fig = px.scatter(\n",
+        "        filtered_data,\n",
+        "        x=\"Crude unvax IR\",\n",
+        "        y=\"Crude vax IR\",\n",
+        "        color=\"Age group\",\n",
+        "        trendline=\"ols\",\n",
+        "        title=\"Crude Death Rates: Vaccinated vs. Unvaccinated\"\n",
+        "    )\n",
+        "    scatter_fig.update_layout(\n",
+        "        xaxis=dict(title=\"Unvaccinated Death Rate\"),\n",
+        "        yaxis=dict(title=\"Vaccinated Death Rate\"),\n",
+        "       annotations=[\n",
+        "    dict(\n",
+        "        x=700, y=250,\n",
+        "        text=\"Critical Zone: High-risk area\",\n",
+        "        showarrow=True,\n",
+        "        arrowhead=2, ax=-40, ay=-40\n",
+        "    )\n",
+        "]\n",
+        "\n",
+        "    )\n",
+        "\n",
+        "#HEATMAP\n",
+        "    numerical_data = filtered_data.select_dtypes(include=[\"number\"])\n",
+        "    if not numerical_data.empty:\n",
+        "        heatmap_fig = px.imshow(\n",
+        "            numerical_data.corr(),\n",
+        "            color_continuous_scale=\"Cividis\",\n",
+        "            title=\"Correlation Heatmap of Metrics\"\n",
+        "        )\n",
+        "        heatmap_fig.update_layout(\n",
+        "            xaxis=dict(tickangle=45),\n",
+        "            yaxis=dict(title=\"Metrics\")\n",
+        "        )\n",
+        "    else:\n",
+        "        heatmap_fig = px.imshow([[None]], title=\"No Correlation Data Available\")\n",
+        "\n",
+        "    # Bar Chart to Compare Death Rates Across Age Groups\n",
+        "    bar_chart_fig = px.bar(\n",
+        "        filtered_data,\n",
+        "        x=\"Age group\",\n",
+        "        y=[\"Crude unvax IR\", \"Crude vax IR\"],\n",
+        "        barmode=\"group\",\n",
+        "        title=\"Comparison of Death Rates Across Age Groups\"\n",
+        "    )\n",
+        "\n",
+        "    # Annotations for Top 5 Anomalies\n",
+        "    anomalies = filtered_data[filtered_data['Crude unvax IR'] > 200]\n",
+        "    if not anomalies.empty:\n",
+        "        top_anomalies = anomalies.nlargest(5, \"Crude unvax IR\")\n",
+        "        annotations = html.Div([\n",
+        "            html.H4(\"Top 5 Anomalies Detected:\"),\n",
+        "            html.Ul([\n",
+        "                html.Li(f\"Age Group: {row['Age group']}, Unvaccinated IR: {row['Crude unvax IR']:.2f}\")\n",
+        "                for _, row in top_anomalies.iterrows()\n",
+        "            ])\n",
+        "        ])\n",
+        "    else:\n",
+        "        annotations = html.Div(\"No anomalies detected.\")\n",
+        "\n",
+        "    return scatter_fig, heatmap_fig, bar_chart_fig, annotations\n",
+        "\n",
+        "# Run App (for Google Colab, use jupyter_mode=\"inline\")\n",
+        "if __name__ == \"__main__\":\n",
+        "    app.run_server(debug=True, mode=\"inline\", port=8300)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 672
+        },
+        "id": "ww0Y8eFxZs7b",
+        "outputId": "64d337d7-f68a-4a1e-d454-7d11101f7c18"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/plain": [
+              "<IPython.core.display.Javascript object>"
+            ],
+            "application/javascript": [
+              "(async (port, path, width, height, cache, element) => {\n",
+              "    if (!google.colab.kernel.accessAllowed && !cache) {\n",
+              "      return;\n",
+              "    }\n",
+              "    element.appendChild(document.createTextNode(''));\n",
+              "    const url = await google.colab.kernel.proxyPort(port, {cache});\n",
+              "    const iframe = document.createElement('iframe');\n",
+              "    iframe.src = new URL(path, url).toString();\n",
+              "    iframe.height = height;\n",
+              "    iframe.width = width;\n",
+              "    iframe.style.border = 0;\n",
+              "    iframe.allow = [\n",
+              "        'accelerometer',\n",
+              "        'autoplay',\n",
+              "        'camera',\n",
+              "        'clipboard-read',\n",
+              "        'clipboard-write',\n",
+              "        'gyroscope',\n",
+              "        'magnetometer',\n",
+              "        'microphone',\n",
+              "        'serial',\n",
+              "        'usb',\n",
+              "        'xr-spatial-tracking',\n",
+              "    ].join('; ');\n",
+              "    element.appendChild(iframe);\n",
+              "  })(8300, \"/\", \"100%\", 650, false, window.element)"
+            ]
+          },
+          "metadata": {}
+        }
+      ]
+    }
+  ]
+}
